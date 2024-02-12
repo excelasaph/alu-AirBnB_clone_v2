@@ -43,7 +43,7 @@ def do_deploy(archive_path):
             -xzvf /tmp/{1}".format(filename_folder, archive))
         run("rm /tmp/{0}".format(archive))
         run("mv /data/web_static/releases/{0}/web_static/* \
-            /data/web_static/releases/{1}/".format(filename_folder, 
+            /data/web_static/releases/{1}/".format(filename_folder,
                                                    filename_folder))
         run("rm -rf \
             /data/web_static/releases/{0}/web_static".format(filename_folder))
