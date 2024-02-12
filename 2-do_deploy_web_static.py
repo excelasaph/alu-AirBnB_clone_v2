@@ -31,13 +31,19 @@ def do_deploy(archive_path):
     if not os.path.exists(archive_path):
         return False
     archive = archive_path.split('/')[-1]
+    print(archive)
     filename_folder = archive.split('.')[0]
+    print(filename_folder)
     try:
         put(archive_path, "/tmp/")
         run("mkdir -p /data/web_static/releases/{0}".format(filename_folder))
         run("tar -C /data/web_static/releases/{0} \
             -xzvf /tmp/{1}".format(filename_folder, archive))
         run("rm /tmp/{0}".format(archive))
+        run("mv /data/web_static/releases/{0}/web_static/* \
+            /data/web_static/releases/{1}/".format(filename_folder, filename_folder))
+        run("rm -rf \
+            /data/web_static/releases/{0}/web_static".format(filename_folder))
         run("rm /data/web_static/current")
         run("ln -sf /data/web_static/releases/{0} \
             /data/web_static/current".format(filename_folder))
