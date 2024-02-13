@@ -36,3 +36,5 @@ def do_pack():
     fab.local("tar -czvf web_static_{0}.tgz web_static".format(date_str))
     fab.local("mkdir -p ./versions/")
     fab.local("mv *.tgz versions")
+    path = fab.local("cd ./versions/; readlink -f *.tgz", capture=True)
+    return path

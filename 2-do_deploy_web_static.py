@@ -33,9 +33,7 @@ def do_deploy(archive_path):
     if not os.path.exists(archive_path):
         return False
     archive = archive_path.split('/')[-1]
-    print(archive)
     filename_folder = archive.split('.')[0]
-    print(filename_folder)
     try:
         put(archive_path, "/tmp/")
         run("mkdir -p /data/web_static/releases/{0}".format(filename_folder))
