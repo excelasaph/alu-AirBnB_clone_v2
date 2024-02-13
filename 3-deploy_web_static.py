@@ -85,6 +85,7 @@ def do_deploy(archive_path):
     else:
         return True
 
+
 def deploy():
     """
     Prototype: def deploy():
